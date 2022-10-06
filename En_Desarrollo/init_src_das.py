@@ -19,7 +19,7 @@ print("Hello sunshine")
 class window_tk():
     def __init__(self, main):
         self.canvas = tk.Canvas(main, bg='white')
-        self.init_img_route = '/home/diegoas/Documents/WOS_28102022_8171.png'
+        self.init_img_route = '/home/diegoas/Documents/ProyectoFinal/Documentos/poligonales_lib.png'
         self.image = itk.PhotoImage(file=self.init_img_route)
         self.bg= self.canvas.create_image(0,0,anchor = tk.NW,image=self.image)
         self.vid = None
