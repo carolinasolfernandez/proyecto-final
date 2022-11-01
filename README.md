@@ -34,5 +34,5 @@ Contiene la solucion de [ailia-models](https://github.com/axinc-ai/ailia-models/
 - El dataset de cada modelo se guarda en la carpeta del modelo bajo el nombre `output.csv`
 - Una vez ejecutado el modelo, se debe agregar una linea de encabezado al `output.csv`, y cortarlo, ya que se apendea el contenido.
 - No se agrego soporte para todos los datasets. Hay datasets programados diferentes. 
-- Para agregar soporte, se puede basar en la modificacion del [siam-mot.py](./ailia-models/object_tracking/siam-mot/siam-mot.py) o del [detector_utils.py](./ailia-models/util/detector_utils.py)
+- Para agregar soporte, se puede basar en la modificacion del [siam-mot.py](./ailia-models/object_tracking/siam-mot/siam-mot.py) - creacion y llamado de `write_prediction()` - o del [detector_utils.py](./ailia-models/util/detector_utils.py) - creacion y llamado de `write_prediction2()` -
 - TODO @any agregar benchmark a los datasets
