@@ -1,0 +1,45 @@
+MotChallenge2DBox
+MPNTrack
+Traceback (most recent call last):
+  File "C:\Users\Salva\Downloads\TrackEval\trackeval\eval.py", line 126, in evaluate
+    output_fol = dataset.get_output_fol(tracker)
+  File "C:\Users\Salva\Downloads\TrackEval\trackeval\datasets\_base_dataset.py", line 54, in get_output_fol
+    return os.path.join(self.output_fol, tracker, self.output_sub_fol)
+  File "C:\Users\Salva\anaconda3\lib\ntpath.py", line 76, in join
+    path = os.fspath(path)
+TypeError: expected str, bytes or os.PathLike object, not list
+
+
+
+
+
+MotChallenge2DBox
+MPNTrack
+Traceback (most recent call last):
+  File "C:\Users\Salva\Downloads\TrackEval\trackeval\eval.py", line 126, in evaluate
+    output_fol = dataset.get_output_fol(tracker)
+  File "C:\Users\Salva\Downloads\TrackEval\trackeval\datasets\_base_dataset.py", line 54, in get_output_fol
+    return os.path.join(self.output_fol, tracker, self.output_sub_fol)
+  File "C:\Users\Salva\anaconda3\lib\ntpath.py", line 76, in join
+    path = os.fspath(path)
+TypeError: expected str, bytes or os.PathLike object, not list
+
+
+
+
+
+MotChallenge2DBox
+MPNTrack
+Traceback (most recent call last):
+  File "C:\Users\Salva\Downloads\TrackEval\trackeval\eval.py", line 126, in evaluate
+    output_fol = dataset.get_output_fol(tracker)
+  File "C:\Users\Salva\Downloads\TrackEval\trackeval\datasets\_base_dataset.py", line 54, in get_output_fol
+    return os.path.join(self.output_fol, tracker, self.output_sub_fol)
+  File "C:\Users\Salva\anaconda3\lib\ntpath.py", line 76, in join
+    path = os.fspath(path)
+TypeError: expected str, bytes or os.PathLike object, not list
+
+
+
+
+
