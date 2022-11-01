@@ -136,7 +136,7 @@ def plot_results(detector, img, category=None, segm_masks=None, logging=True):
             print(f'  w={obj.w}')
             print(f'  h={obj.h}')
 
-        write_predictions2(idx, cat, obj.prob, obj.x, obj.y, obj.w, obj.h)
+        write_predictions2(idx, cat, obj.prob, int(w * obj.x), int(h * obj.y), int(w * obj.w), int(h * obj.h))
         
 
         if isinstance(obj.category, int) and category is not None:
