@@ -118,10 +118,8 @@ def plot_results(detector, img, category=None, segm_masks=None, logging=True):
         obj = detector.get_object(idx) if hasattr(detector, 'get_object') else detector[idx]
 
         if not isinstance(obj.category, str) and category is not None:
-            cat=f'{obj.category}[ {category[int(obj.category)]} ]'
-        else:
-            cat=f'[ {obj.category} ]'
-
+            cat=category[int(obj.category)]
+        
         # print result
         if logging:
             print(f'+ idx={idx}')
@@ -136,7 +134,8 @@ def plot_results(detector, img, category=None, segm_masks=None, logging=True):
             print(f'  w={obj.w}')
             print(f'  h={obj.h}')
 
-        write_predictions2(idx, cat, obj.prob, int(w * obj.x), int(h * obj.y), int(w * obj.w), int(h * obj.h))
+        if cat == "person":
+            write_predictions2(idx, obj.prob, (w * obj.x), (h * obj.y), (w * obj.w), (h * obj.h))
         
 
         if isinstance(obj.category, int) and category is not None:
@@ -250,16 +249,18 @@ def write_predictionsHeader(frame, idx, category, probability, x, y, w, h):
             h,
         ))
 
-def write_predictions2(idx, category, probability, x, y, w, h):
+def write_predictions2(idx, probability, x, y, w, h):
     global frame_count
-    with open('output.csv', 'a') as f:
-        f.write('%d, %s, %s, %s, %f, %f, %f, %f\n' % (
+    with open('../../output.txt', 'a') as f:
+        f.write('%d, %s, %f, %f, %f, %f, %f, %d, %d, %d\n' % (
             frame_count,
             idx,
-            category,
-            probability,
             x,
             y,
             w,
             h,
+            probability,
+            -1,
+            -1,
+            -1,
         ))

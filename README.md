@@ -24,15 +24,16 @@ Se utilizo el ailia-models para obtener los resultados. Esta organizado en:
     - Video etiquetado con el nombre del modelo
     - Export del dataset de cada modelo con su nombre
 
-No todos los datasets tienen el mismo formato. En algunos se utilizo width y en otro x1,x2->(top left, rigth bottom). Tener en cuenta que el extremo superior izquierdo es (0,0) y es positivo hacia abajo y a la derecha.
+- El formato de los datasets generados con ailia responden al formato: {frame, id, x, y, width, height, score/conf, x, y, z}. x, y, z son seteados a -1
+- El formato Mot1.1 exportado del cvat tiene faltante la columna score/conf. Se debe setear a 1 (se sabe al 100% que es una persona)
+
 
 
 
 # ailia-models
 Contiene la solucion de [ailia-models](https://github.com/axinc-ai/ailia-models/blob/master/TUTORIAL.md) modificado para guardar el csv etiquetado. Seguir las instrucciones del tutorial con una licencia de prueba.
 - Se utilizo el `launcher.py`.
-- El dataset de cada modelo se guarda en la carpeta del modelo bajo el nombre `output.csv`
-- Una vez ejecutado el modelo, se debe agregar una linea de encabezado al `output.csv`, y cortarlo, ya que se apendea el contenido.
+- El dataset de cada modelo se guarda en la carpeta principal bajo el nombre `output.txt`
 - No se agrego soporte para todos los datasets. Hay datasets programados diferentes. 
 - Para agregar soporte, se puede basar en la modificacion del [siam-mot.py](./ailia-models/object_tracking/siam-mot/siam-mot.py) - creacion y llamado de `write_prediction()` - o del [detector_utils.py](./ailia-models/util/detector_utils.py) - creacion y llamado de `write_prediction2()` -
 - TODO @any agregar benchmark a los datasets
