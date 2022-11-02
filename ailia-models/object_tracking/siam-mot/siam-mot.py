@@ -128,21 +128,24 @@ def frame_vis_generator(frame, results: BBox, frame_count):
         cv2.putText(frame, '{}'.format(class_name), (x1 + 5, y1 - 5),
                     cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), thickness=2)
 
-        write_predictions(frame_count, entity_id, class_name, scores[i], x1, y1, x2, y2)
+        if class_name == "person":
+            write_predictions(frame_count, entity_id, scores[i], x1, y1, x2-x1, y2-y1)
     return frame
 
 
-def write_predictions(frame_count, idx, label, score, x1, y1, x2, y2):
-    with open('siammot.csv', 'a') as f:
-        f.write('%d, %s, %s, %s, %f, %f, %f, %f\n' % (
+def write_predictions(frame_count, idx, score, x1, y1, width, height):
+    with open('../../siammot.txt', 'a') as f:
+        f.write('%d, %s, %f, %f, %f, %f, %f, %d, %d, %d\n' % (
             frame_count,
             idx,
-            label,
-            score,
             x1,
             y1,
-            x2,
-            y2,
+            width,
+            height,
+            score,
+            -1,
+            -1,
+            -1,
         ))
 
 # ======================
