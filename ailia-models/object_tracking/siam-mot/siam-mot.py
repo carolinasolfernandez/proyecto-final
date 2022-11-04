@@ -134,7 +134,7 @@ def frame_vis_generator(frame, results: BBox, frame_count):
 
 
 def write_predictions(frame_count, idx, score, x1, y1, width, height):
-    with open('../../siammot.txt', 'a') as f:
+    with open('../../output.txt', 'a') as f:
         f.write('%d, %s, %f, %f, %f, %f, %f, %d, %d, %d\n' % (
             frame_count,
             idx,
