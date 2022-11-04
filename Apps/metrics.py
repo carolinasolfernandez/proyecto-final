@@ -114,5 +114,5 @@ if __name__ == "__main__":
     errorByFrame, averageError, frames=metrics.getErrorObjectDetectionByFrame()
     
 
-    utils.plot('error_obj.png', frames, errorByFrame, 'Person errror count by Frame', 'Frame', 'Error %')
+    utils.plot('error_obj.png', frames, errorByFrame, 'Error deteccion por frame', 'Frame', 'Error %')
     utils.writeResult("metrics.txt", "Error Detecciones por Frame Promedio [%]: "+str(averageError), frames, errorByFrame)
