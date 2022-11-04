@@ -16,16 +16,17 @@ Se esperan obtener indicadores de comportamiento de las personas que puedan ser 
 
 Se realizarán las pruebas sobre un conjunto de datos propios y etiquetados por el equipo, además se utilizarán datasets previamente utilizados por otras investigaciones afines. Para resolver la problemática se evaluarán distintas etapas de pre-procesamiento de la imagen tales como sustracción de fondo, recorte de imagen en zona de interés, entre otros filtros relacionados a la imagen. Para el procesamiento de los videos se analizarán distintos enfoques de machine learning que permitan obtener los indicadores antes mencionados, tales como CNN, GAN, SIFT, SIFT-FAST, entre otros que están bajo estudio.
 
-# Resultados
-Se utilizo el ailia-models para obtener los resultados. Esta organizado en:
-- Carpeta con numero de video:
-    - Video original
-    - Export del dataset etiquetado cvat
-    - Video etiquetado con el nombre del modelo
-    - Export del dataset de cada modelo con su nombre
-
-- El formato de los datasets generados con ailia responden al formato: {frame, id, x, y, width, height, score/conf, x, y, z}. x, y, z son seteados a -1
-- El formato Mot1.1 exportado del cvat tiene faltante la columna score/conf. Se debe setear a 1 (se sabe al 100% que es una persona)
+# Ejecutar circuito
+- Instalar las herramientas segun lo indicado [aqui](#instalar)
+- Tener un video y su ground truth en Mot1.1
+    - El formato Mot1.1 exportado del cvat tiene faltante la columna score/conf. Se debe setear a 1 (se sabe al 100% que es una persona)
+    - El formato de los datasets generados con ailia responden al formato: {frame, id, x, y, width, height, score/conf, x, y, z}. x, y, z son seteados a -1
+- Ejecutar el comando con los valores correspondiente. Referir a [scripts](./scripts/) para docs:
+```
+cd scripts
+sh pipeline.sh -i ../data/videos/59.mp4 -g ../data/gt/59.txt -m object_tracking/siam-mot
+```
+- Visualizar los resultados en la carpeta [resultados](./resultados/)
 
 
 # ailia-models
