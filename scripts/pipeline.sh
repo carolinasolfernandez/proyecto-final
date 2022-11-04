@@ -1,5 +1,7 @@
 #! usr/bin/bash
 
+# sh pipeline.sh -i ../data/videos/59.mp4 -g ../data/gt/59.txt -m object_detection/yolox
+
 envID=2 #index de GPU. Ver en el luncher, el index de la unidad
 
 #modelDir=object_detection/yolox
@@ -58,4 +60,8 @@ cp $evalDirData/pedestrian_plot.png $resDir/
 cp $evalDirData/pedestrian_summary.txt $resDir/
 cp $cwd/$gt  $resDir/gt.txt
 
-echo "Los resultados se encuentran en la carpeta $resDir!"
+# Ejecuta Metricas de Negocio
+cd $root/Apps
+python metrics.py -d $resDir/$dateName-out.txt -g $resDir/gt.txt -o $resDir
+
+echo "Los resultados se encuentran en la carpeta $resDir"
