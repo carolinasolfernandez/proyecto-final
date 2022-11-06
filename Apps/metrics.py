@@ -46,6 +46,27 @@ class Metrics():
         return realObjs, expectedObjs, errorFrame, averageError, list(range(1, self.frames+1))
 
 
+    def getMomentoMasConcurrido(self):
+        datasetCountObjByFrame = {}
+        gtCountObjByFrame = {}
+
+
+        for r in self.dataset:
+            frame=r.get('frame')
+            datasetCountObjByFrame[frame]=datasetCountObjByFrame.get(frame, 0)+1
+
+        for r in self.gt:
+            frame = r.get('frame')
+            gtCountObjByFrame[frame]=gtCountObjByFrame.get(frame, 0)+1
+
+        maximumObjsDataset = max(datasetCountObjByFrame.values())
+        framesDataMasConcurridos = [key for key, value in datasetCountObjByFrame.items() if value == maximumObjsDataset]
+
+        maximumObjsGT = max(gtCountObjByFrame.values())
+        framesGTMasConcurridos = [key for key, value in gtCountObjByFrame.items() if value == maximumObjsGT]
+
+        return framesDataMasConcurridos, framesGTMasConcurridos, [maximumObjsDataset] * len(framesDataMasConcurridos), [maximumObjsGT] * len(framesGTMasConcurridos)
+
 
 class Utils():
     def __init__(self, outFolder):
@@ -69,18 +90,20 @@ class Utils():
             })
         return data
 
-    def writeResult(self, outFile, brief,  real, expected, header, errors):
-        header.insert(0, "type")
-        errors.insert(0, "error")
+    def writeResult(self, outFile, brief,  real, expected, header=[], errors=[]):
         real.insert(0, "real")
         expected.insert(0, "expected")
         with open(self.outFolder+"/"+outFile, 'a+', newline='') as myfile:
             wr = csv.writer(myfile, quoting=csv.QUOTE_NONE)
             myfile.write(brief+"\n")
-            wr.writerow(header)
+            if len(header):
+                header.insert(0, "type")
+                wr.writerow(header)
             wr.writerow(real)
             wr.writerow(expected)
-            wr.writerow(errors)
+            if len(errors):
+                errors.insert(0, "error")
+                wr.writerow(errors)
             myfile.write("-----------\n")
 
 
@@ -104,6 +127,17 @@ class Utils():
         plt.title(title)
         plt.savefig(self.outFolder+"/"+outFile) 
         plt.show()
+
+
+    def plotSinError(self, outFile, real, expected, yReal, yExpected, title, xlabel, ylabel):
+        plt.plot(real, yReal, label="Real")
+        plt.plot(expected, yExpected, label="Esperado")
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
+        plt.title(title)
+        plt.legend()
+        plt.savefig(self.outFolder+"/"+outFile)
+        plt.show() 
 
 
 def main(argv):
@@ -142,3 +176,7 @@ if __name__ == "__main__":
 
     utils.plot('person_count.png', real, expected, errorByFrame, frames, 'Error deteccion por frame', 'Frame', 'Personas detectadas')
     utils.writeResult("metrics.txt", "Error Detecciones por Frame Promedio [%]: "+str(averageError),  real, expected, frames, errorByFrame)
+
+    real, expected, maxReal, maxExpected = metrics.getMomentoMasConcurrido()
+    utils.plotSinError('mas_concurrido.png', real, expected, maxReal, maxExpected, "Frames mas concurridos", 'Frames', 'Personas detectadas')
+    utils.writeResult("metrics.txt", "Frames mas concurridos. Max Personas Real: "+str(maxReal[0])+" vs Esperado: "+str(maxExpected[0]), real, expected)
