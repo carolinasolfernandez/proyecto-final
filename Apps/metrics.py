@@ -11,13 +11,18 @@ class Metrics():
     def __init__(self,  dataset, gt):
         self.dataset = dataset
         self.gt = gt
+        datasetFrames= dataset[-1:][0].get("frame")
+        gtFrames= gt[-1:][0].get("frame")
+        self.frames = int(max(datasetFrames, gtFrames))
         
         
     def getErrorObjectDetectionByFrame(self):
         datasetCountObjByFrame = {}
         gtCountObjByFrame = {}
         errorFrame = []
-        frames=[]
+        realObjs =[]
+        expectedObjs =[]
+
 
         for r in self.dataset:
             frame=r.get('frame')
@@ -27,16 +32,18 @@ class Metrics():
             frame = r.get('frame')
             gtCountObjByFrame[frame]=gtCountObjByFrame.get(frame, 0)+1
 
-        for frame in datasetCountObjByFrame:
-            countDataset=datasetCountObjByFrame.get(frame)
-            countGT=gtCountObjByFrame.get(frame)
-            error=abs((countDataset-countGT)/countDataset)
+
+        for frame in range(1, self.frames+1):
+            countDataset=datasetCountObjByFrame.get(frame, 0)
+            countGT=gtCountObjByFrame.get(frame, 0)
+            error=abs(countDataset-countGT)/max(countDataset, countGT)
             errorFrame.append(error*100)
-            frames.append(frame)
+            realObjs.append(countDataset)
+            expectedObjs.append(countGT)
 
         averageError=statistics.mean(errorFrame)
         print("Average obj count error [%]: "+str(averageError))
-        return errorFrame, averageError, frames
+        return realObjs, expectedObjs, errorFrame, averageError, list(range(1, self.frames+1))
 
 
 
@@ -49,7 +56,7 @@ class Utils():
         reader = csv.reader(open(file))
         for row in reader:
             data.append({
-                "frame":    row[0],
+                "frame":    int(row[0]),
                 "obj":      row[1],
                 "x":        row[2],
                 "y":        row[3],
@@ -62,22 +69,41 @@ class Utils():
             })
         return data
 
-    def writeResult(self, outFile, brief, header, data):
+    def writeResult(self, outFile, brief,  real, expected, header, errors):
+        header.insert(0, "type")
+        errors.insert(0, "error")
+        real.insert(0, "real")
+        expected.insert(0, "expected")
         with open(self.outFolder+"/"+outFile, 'a+', newline='') as myfile:
             wr = csv.writer(myfile, quoting=csv.QUOTE_NONE)
             myfile.write(brief+"\n")
             wr.writerow(header)
-            wr.writerow(data)
+            wr.writerow(real)
+            wr.writerow(expected)
+            wr.writerow(errors)
             myfile.write("-----------\n")
 
 
-    def plot(self, outFile, x, y, title, xlabel, ylabel):
-        plt.plot(x, y)
+    def plot(self, outFile, real, expected, error, x, title, xlabel, ylabel):
+        fig, ax = plt.subplots()
+        ax.set_xlabel(xlabel)
+
+        # Grafico Error
+        ax.set_ylabel("Error relativo %", color='tab:red')
+        ax.plot(x, error, label = "error", color='tab:red', linestyle = 'dotted')
+        ax.tick_params(axis='y', labelcolor='tab:red')
+
+        # Grafico Valor esperado - real
+        ax2 = ax.twinx()  # instantiate a second axes that shares the same x-axis
+        ax2.set_ylabel(ylabel)  
+        ax2.plot(x, real, label = "real")
+        ax2.plot(x, expected, label = "esperado")
+
+        fig.tight_layout() 
+        plt.legend()
         plt.title(title)
-        plt.xlabel(xlabel, fontsize=12)
-        plt.ylabel(ylabel, fontsize=12)
-        plt.savefig(self.outFolder+"/"+outFile)
-        plt.show() 
+        plt.savefig(self.outFolder+"/"+outFile) 
+        plt.show()
 
 
 def main(argv):
@@ -111,8 +137,8 @@ if __name__ == "__main__":
     gt= utils.getData(gtFile)
 
     metrics = Metrics(dataset, gt)
-    errorByFrame, averageError, frames=metrics.getErrorObjectDetectionByFrame()
+    real, expected, errorByFrame, averageError, frames=metrics.getErrorObjectDetectionByFrame()
     
 
-    utils.plot('error_obj.png', frames, errorByFrame, 'Error deteccion por frame', 'Frame', 'Error %')
-    utils.writeResult("metrics.txt", "Error Detecciones por Frame Promedio [%]: "+str(averageError), frames, errorByFrame)
+    utils.plot('person_count.png', real, expected, errorByFrame, frames, 'Error deteccion por frame', 'Frame', 'Personas detectadas')
+    utils.writeResult("metrics.txt", "Error Detecciones por Frame Promedio [%]: "+str(averageError),  real, expected, frames, errorByFrame)
