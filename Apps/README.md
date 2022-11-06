@@ -15,11 +15,13 @@ Folder output es opcional. Si falta, se guarda los resultados en la carpeta actu
 ```
 
 ## Metricas disponibles
-- Error de cantidad de personas detectadas por frame: 
-$\displaystyle\frac{Detectadas-Reales}{Detecatadas} *100%$
+- Error relativo de cantidad de personas detectadas por frame: 
+$\displaystyle\frac{Detectadas-Reales}{Max(Detecatadas, Reales)} *100%$
 
-- Error de cantidad de personas detectadas promedio en dataset: 
+- Error relativo de cantidad de personas detectadas promedio en dataset: 
 $\displaystyle\frac{\sum_{f=1}^{frames} Error_f}{frames}$
+
+- Momento mas concurrido: Frames con mayor cantidad de detecciones
 
 ## Salida
 - Grafico con evolucion por frame: [`error_obj.png`](../resultados/yolox/20221104-162639/error_obj.png)
