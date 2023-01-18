@@ -63,5 +63,6 @@ cp $cwd/$gt  $resDir/gt.txt
 # Ejecuta Metricas de Negocio
 cd $root/Apps
 python metrics.py -d $resDir/$dateName-out.txt -g $resDir/gt.txt -o $resDir
-
 echo "Los resultados se encuentran en la carpeta $resDir"
+cd $root/Apps/HeatMapIndicator
+python main.py
