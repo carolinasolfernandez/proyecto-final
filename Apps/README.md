@@ -33,8 +33,8 @@ $\displaystyle\frac{\sum_{f=1}^{frames} Error_f}{frames}$
 - Momento mas concurrido: Frames con mayor cantidad de detecciones
 
 - Zona más concurrida con distintos niveles de threshold por dos medios:
--- Sustracción de fondo del video.
--- A traves de los bounding box detectados y ground truth en caso de haber.
+1. Sustracción de fondo del video.
+2. A traves de los bounding box detectados y ground truth en caso de haber.
 
 ## Salida
 - Grafico con evolucion por frame: [`error_obj.png`](../resultados/yolox/20221104-162639/error_obj.png)
