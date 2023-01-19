@@ -1,11 +1,16 @@
 from datetime import datetime
 import os
 import shutil
+import sys
 
 def create_folder():
     a = datetime.now()
     # Directory
-    directory = str(a.year) + str(a.month) + str(a.day)  + str(a.hour) + str(a.minute) + str(a.second)
+    if len(sys.argv) == 2:
+        directory = sys.argv[1]
+    else:
+        directory = str(a.year) + str(a.month) + str(a.day)  + str(a.hour) + str(a.minute) + str(a.second)
+    
     # Parent Directory path
     parent_dir = os.getcwd() + '\Output'
     # Path
