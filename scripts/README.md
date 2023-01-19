@@ -3,7 +3,12 @@
 Esta carpeta contiene los scripts a ejecutar
 
 # Pipeline
-El script `pipeline.sh` ejecuta el modelo indicado y evalua el dataset resultante usando trackeval y metricas de negocio.
+El script `pipeline.sh`:
+- Ejecuta el modelo indicado
+- Evalua el dataset resultante usando trackeval
+- Evalua metricas de negocio
+- Genera un mapa de calor.
+
 Para usarlo, se necesita tener [instalado ailia-models y TrackEval](../README.md#instalar), referenciados en esta misma solucion.
 ```
 sh pipeline.sh -i ../data/videos/59.mp4 -g ../data/gt/59.txt -m object_tracking/siam-mot
