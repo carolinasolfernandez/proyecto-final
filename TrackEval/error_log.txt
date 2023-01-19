@@ -127,3 +127,116 @@ trackeval.utils.TrackEvalException: Ground-truth data contains the following inv
 
 
 
+MotChallenge2DBox
+data
+Traceback (most recent call last):
+  File "C:\Users\caros\Documents\Projects\proyecto-final\TrackEval\trackeval\eval.py", line 86, in evaluate
+    res[curr_seq] = eval_sequence(curr_seq, dataset, tracker, class_list, metrics_list,
+  File "C:\Users\caros\Documents\Projects\proyecto-final\TrackEval\trackeval\_timing.py", line 17, in wrap
+    result = f(*args, **kw)
+  File "C:\Users\caros\Documents\Projects\proyecto-final\TrackEval\trackeval\eval.py", line 191, in eval_sequence
+    raw_data = dataset.get_raw_seq_data(tracker, seq)
+  File "C:\Users\caros\Documents\Projects\proyecto-final\TrackEval\trackeval\_timing.py", line 17, in wrap
+    result = f(*args, **kw)
+  File "C:\Users\caros\Documents\Projects\proyecto-final\TrackEval\trackeval\datasets\_base_dataset.py", line 92, in get_raw_seq_data
+    raw_gt_data = self._load_raw_file(tracker, seq, is_gt=True)
+  File "C:\Users\caros\Documents\Projects\proyecto-final\TrackEval\trackeval\datasets\mot_challenge_2d_box.py", line 228, in _load_raw_file
+    time_data = np.asarray(read_data[time_key], dtype=np.float)
+  File "C:\Users\caros\anaconda3\lib\site-packages\numpy\__init__.py", line 284, in __getattr__
+    raise AttributeError("module {!r} has no attribute "
+AttributeError: module 'numpy' has no attribute 'float'
+
+
+
+
+
+MotChallenge2DBox
+data
+Traceback (most recent call last):
+  File "C:\Users\caros\Documents\Projects\proyecto-final\TrackEval\trackeval\eval.py", line 86, in evaluate
+    res[curr_seq] = eval_sequence(curr_seq, dataset, tracker, class_list, metrics_list,
+  File "C:\Users\caros\Documents\Projects\proyecto-final\TrackEval\trackeval\_timing.py", line 17, in wrap
+    result = f(*args, **kw)
+  File "C:\Users\caros\Documents\Projects\proyecto-final\TrackEval\trackeval\eval.py", line 191, in eval_sequence
+    raw_data = dataset.get_raw_seq_data(tracker, seq)
+  File "C:\Users\caros\Documents\Projects\proyecto-final\TrackEval\trackeval\_timing.py", line 17, in wrap
+    result = f(*args, **kw)
+  File "C:\Users\caros\Documents\Projects\proyecto-final\TrackEval\trackeval\datasets\_base_dataset.py", line 92, in get_raw_seq_data
+    raw_gt_data = self._load_raw_file(tracker, seq, is_gt=True)
+  File "C:\Users\caros\Documents\Projects\proyecto-final\TrackEval\trackeval\datasets\mot_challenge_2d_box.py", line 228, in _load_raw_file
+    time_data = np.asarray(read_data[time_key], dtype=np.float)
+  File "C:\Users\caros\anaconda3\lib\site-packages\numpy\__init__.py", line 284, in __getattr__
+    raise AttributeError("module {!r} has no attribute "
+AttributeError: module 'numpy' has no attribute 'float'
+
+
+
+
+
+MotChallenge2DBox
+data
+Traceback (most recent call last):
+  File "C:\Users\caros\Documents\Projects\proyecto-final\TrackEval\trackeval\eval.py", line 86, in evaluate
+    res[curr_seq] = eval_sequence(curr_seq, dataset, tracker, class_list, metrics_list,
+  File "C:\Users\caros\Documents\Projects\proyecto-final\TrackEval\trackeval\_timing.py", line 17, in wrap
+    result = f(*args, **kw)
+  File "C:\Users\caros\Documents\Projects\proyecto-final\TrackEval\trackeval\eval.py", line 191, in eval_sequence
+    raw_data = dataset.get_raw_seq_data(tracker, seq)
+  File "C:\Users\caros\Documents\Projects\proyecto-final\TrackEval\trackeval\_timing.py", line 17, in wrap
+    result = f(*args, **kw)
+  File "C:\Users\caros\Documents\Projects\proyecto-final\TrackEval\trackeval\datasets\_base_dataset.py", line 92, in get_raw_seq_data
+    raw_gt_data = self._load_raw_file(tracker, seq, is_gt=True)
+  File "C:\Users\caros\Documents\Projects\proyecto-final\TrackEval\trackeval\datasets\mot_challenge_2d_box.py", line 228, in _load_raw_file
+    time_data = np.asarray(read_data[time_key], dtype=np.float)
+  File "C:\Users\caros\anaconda3\lib\site-packages\numpy\__init__.py", line 284, in __getattr__
+    raise AttributeError("module {!r} has no attribute "
+AttributeError: module 'numpy' has no attribute 'float'
+
+
+
+
+
+MotChallenge2DBox
+data
+Traceback (most recent call last):
+  File "C:\Users\caros\Documents\Projects\proyecto-final\TrackEval\trackeval\eval.py", line 86, in evaluate
+    res[curr_seq] = eval_sequence(curr_seq, dataset, tracker, class_list, metrics_list,
+  File "C:\Users\caros\Documents\Projects\proyecto-final\TrackEval\trackeval\_timing.py", line 17, in wrap
+    result = f(*args, **kw)
+  File "C:\Users\caros\Documents\Projects\proyecto-final\TrackEval\trackeval\eval.py", line 191, in eval_sequence
+    raw_data = dataset.get_raw_seq_data(tracker, seq)
+  File "C:\Users\caros\Documents\Projects\proyecto-final\TrackEval\trackeval\_timing.py", line 17, in wrap
+    result = f(*args, **kw)
+  File "C:\Users\caros\Documents\Projects\proyecto-final\TrackEval\trackeval\datasets\_base_dataset.py", line 92, in get_raw_seq_data
+    raw_gt_data = self._load_raw_file(tracker, seq, is_gt=True)
+  File "C:\Users\caros\Documents\Projects\proyecto-final\TrackEval\trackeval\datasets\mot_challenge_2d_box.py", line 228, in _load_raw_file
+    time_data = np.asarray(read_data[time_key], dtype=np.float)
+  File "C:\Users\caros\anaconda3\lib\site-packages\numpy\__init__.py", line 284, in __getattr__
+    raise AttributeError("module {!r} has no attribute "
+AttributeError: module 'numpy' has no attribute 'float'
+
+
+
+
+
+MotChallenge2DBox
+data
+Traceback (most recent call last):
+  File "C:\Users\caros\Documents\Projects\proyecto-final\TrackEval\trackeval\eval.py", line 86, in evaluate
+    res[curr_seq] = eval_sequence(curr_seq, dataset, tracker, class_list, metrics_list,
+  File "C:\Users\caros\Documents\Projects\proyecto-final\TrackEval\trackeval\_timing.py", line 17, in wrap
+    result = f(*args, **kw)
+  File "C:\Users\caros\Documents\Projects\proyecto-final\TrackEval\trackeval\eval.py", line 195, in eval_sequence
+    data = dataset.get_preprocessed_seq_data(raw_data, cls)
+  File "C:\Users\caros\Documents\Projects\proyecto-final\TrackEval\trackeval\_timing.py", line 17, in wrap
+    result = f(*args, **kw)
+  File "C:\Users\caros\Documents\Projects\proyecto-final\TrackEval\trackeval\datasets\mot_challenge_2d_box.py", line 359, in get_preprocessed_seq_data
+    to_remove_tracker = np.array([], np.int)
+  File "C:\Users\caros\anaconda3\lib\site-packages\numpy\__init__.py", line 284, in __getattr__
+    raise AttributeError("module {!r} has no attribute "
+AttributeError: module 'numpy' has no attribute 'int'
+
+
+
+
+
