@@ -87,3 +87,11 @@ python run_mot_challenge.py --BENCHMARK PF --DO_PREPROC False
 - Para entrenar un modelo, se debe modificar el ground truth y el dataset con nuestros datos:
     - GT: `TrackEval/data/gt/mot_challenge/PF-train/PF-01/gt/gt.txt`
     - Dataset: `TrackEval/data/trackers/mot_challenge/PF-train/data/data/PF-01.txt`
+
+
+## HeatMapIndicator
+- En este repositorio:
+```
+cd Apps/HeatMapIndicator
+pip install -r requirements.txt
+```
