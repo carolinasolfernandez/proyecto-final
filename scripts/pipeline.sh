@@ -63,6 +63,18 @@ cp $cwd/$gt  $resDir/gt.txt
 # Ejecuta Metricas de Negocio
 cd $root/Apps
 python metrics.py -d $resDir/$dateName-out.txt -g $resDir/gt.txt -o $resDir
-echo "Los resultados se encuentran en la carpeta $resDir"
+
+
+# Copio archivos necesario para HeatMapIndicator
+cp $cwd/$gt $root/Apps/HeatMapIndicator/Input/gt.txt
+cp $resDir/$dateName-out.txt $root/Apps/HeatMapIndicator/Input/detection.txt
+cp $cwd/$inVideo $root/Apps/HeatMapIndicator/Input/input.mp4
+
+echo "ejecutando mapa de calor ...."
+# Ejecuta Mapa de calor
 cd $root/Apps/HeatMapIndicator
-python main.py
+python main.py $dateName
+mv $root/Apps/HeatMapIndicator/Output/$dateName $resDir/HeatMapIndicator
+
+
+echo "Los resultados se encuentran en la carpeta $resDir"
