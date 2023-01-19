@@ -16,11 +16,27 @@ Folder output es opcional. Si falta, se guarda los resultados en la carpeta actu
 ```
 
 # HeatMap
-Script para generar mapas de calor:
+- Instalacion:
 ```
- python HeatMapIndicator/main.py 
- ```
- La información de entrada, de salida y el código utilizado quedan almacenado en HeatMapIndicator/Output/Timestamp con el horario de la ejecución del script.
+cd Apps/HeatMapIndicator
+pip install -r requirements.txt
+```
+- Script para generar mapas de calor:
+```
+python HeatMapIndicator/main.py 
+```
+En el caso de error `in create_folder`:
+```
+cd HeatMapIndicator
+python main.py [output-folder-name : optional]
+```
+- Uso:
+   - La carpeta HeatMapIndicator/Input debe contener los archivos:
+      - `background.jpg`: imagen del video sin personas
+      - `gt`: ground truth file
+      - `input.mp4`: video a analizar
+      - `detection.txt`: dataset generado por el algoritmo bajo analisis
+   - La información de entrada, de salida y el código utilizado quedan almacenado en HeatMapIndicator/Output/Timestamp con el horario de la ejecución del script.
 
 
 ## Metricas disponibles
