@@ -111,7 +111,7 @@ def create_heatmap(background, file, path_out, case):
     fl.close()
     for dt in data:
         # Split string to floats
-        frame,_, x, y, w, h, z1, z2, z3 = map(float, dt.split(','))
+        frame,_, x, y, w, h, accuracy, z1, z2, z3 = map(float, dt.split(','))
         x = int(x)
         y = int(y)
         w = int(w)
