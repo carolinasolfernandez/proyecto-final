@@ -126,7 +126,7 @@ class Utils():
         plt.legend()
         plt.title(title)
         plt.savefig(self.outFolder+"/"+outFile) 
-        plt.show()
+        #plt.show()
 
 
     def plotSinError(self, outFile, real, expected, yReal, yExpected, title, xlabel, ylabel):
@@ -137,7 +137,7 @@ class Utils():
         plt.title(title)
         plt.legend()
         plt.savefig(self.outFolder+"/"+outFile)
-        plt.show() 
+        #plt.show() 
 
 
 def main(argv):
