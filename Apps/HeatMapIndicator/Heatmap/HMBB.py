@@ -56,16 +56,6 @@ def heatmap_creator(background, bboxs_stack, cant_frames, alpha, path_resultados
     #Convierto la imagen a HSV
     hsv_img = cv2.cvtColor(norm_stack, cv2.COLOR_BGR2HSV)
     salida = detect_bbox(0.9,hsv_img,map_norm_stack, path_resultados, case)
-    salida = detect_bbox(0.8,hsv_img,map_norm_stack, path_resultados, case)
-    salida = detect_bbox(0.7,hsv_img,map_norm_stack, path_resultados, case)
-    salida = detect_bbox(0.6,hsv_img,map_norm_stack, path_resultados, case)
-    salida = detect_bbox(0.5,hsv_img,map_norm_stack, path_resultados, case)
-    salida = detect_bbox(0.4,hsv_img,map_norm_stack, path_resultados, case)
-    salida = detect_bbox(0.3,hsv_img,map_norm_stack, path_resultados, case)
-    salida = detect_bbox(0.2,hsv_img,map_norm_stack, path_resultados, case)
-    salida = detect_bbox(0.1,hsv_img,map_norm_stack, path_resultados, case)
-
-
 
     return cv2.addWeighted(background, alpha, map_norm_stack, 1-alpha, 0)
 

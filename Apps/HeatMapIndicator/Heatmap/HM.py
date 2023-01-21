@@ -100,14 +100,6 @@ def main(video_in, path_resultados):
     hsv_img = cv2.cvtColor(grayImage, cv2.COLOR_BGR2HSV)
 
     salida = detect_bbox(0.9,hsv_img,result_overlay, path_resultados)
-    salida = detect_bbox(0.8,hsv_img,result_overlay, path_resultados)
-    salida = detect_bbox(0.7,hsv_img,result_overlay, path_resultados)
-    salida = detect_bbox(0.6,hsv_img,result_overlay, path_resultados)
-    salida = detect_bbox(0.5,hsv_img,result_overlay, path_resultados)
-    salida = detect_bbox(0.4,hsv_img,result_overlay, path_resultados)
-    salida = detect_bbox(0.3,hsv_img,result_overlay, path_resultados)
-    salida = detect_bbox(0.2,hsv_img,result_overlay, path_resultados)
-    salida = detect_bbox(0.1,hsv_img,result_overlay, path_resultados)
 
     #Guardo imagen final
     cv2.imwrite(path_resultados + '/Heatmap.jpg', salida)
