@@ -190,7 +190,8 @@ class HOTA(_BaseMetric):
             plt.plot(self.array_labels, res[name], style)
         plt.xlabel('alpha')
         plt.ylabel('score')
-        plt.title(tracker + ' - ' + cls)
+        #plt.title(tracker + ' - ' + cls)
+        plt.title('Metricas de Desarrollo')
         plt.axis([0, 1, 0, 1])
         legend = []
         for name in self.float_array_fields:
