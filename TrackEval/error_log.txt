@@ -1,0 +1,19 @@
+MotChallenge2DBox
+data
+Traceback (most recent call last):
+  File "C:\Users\Salva\Documents\GitHub\proyecto-final\TrackEval\trackeval\eval.py", line 86, in evaluate
+    res[curr_seq] = eval_sequence(curr_seq, dataset, tracker, class_list, metrics_list,
+  File "C:\Users\Salva\Documents\GitHub\proyecto-final\TrackEval\trackeval\_timing.py", line 17, in wrap
+    result = f(*args, **kw)
+  File "C:\Users\Salva\Documents\GitHub\proyecto-final\TrackEval\trackeval\eval.py", line 197, in eval_sequence
+    seq_res[cls][met_name] = metric.eval_sequence(data)
+  File "C:\Users\Salva\Documents\GitHub\proyecto-final\TrackEval\trackeval\_timing.py", line 17, in wrap
+    result = f(*args, **kw)
+  File "C:\Users\Salva\Documents\GitHub\proyecto-final\TrackEval\trackeval\metrics\track_map.py", line 71, in eval_sequence
+    gt_ids, dt_ids = data['gt_track_ids'], data['dt_track_ids']
+KeyError: 'gt_track_ids'
+
+
+
+
+
