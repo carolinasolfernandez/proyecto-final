@@ -26,10 +26,9 @@ def detect_bbox(percent,image,heatmap, path_resultados):
     cv2.rectangle(heatmap,(x,y),(x+w,y+h),(255, 255, 255),2)
     #Guardo el mapa de calor
     cv2.imwrite(path_resultados + "/Heatmap{0}.jpg".format(percent), heatmap)
-    with open(path_resultados + '/result.txt', "a") as file:
-        file.write("Box {0}: ({1},{2}), ({3},{4}), ({5},{6}), ({7},{8}) \n".format(percent,x,y,x+w,y,x+w,y+h,x,y+h))
+    with open(path_resultados + '/resultmog.txt', "a") as file:
+        file.write("{0},{1},{2},{3}".format(percent,x,y,x+w,y+h))
     return heatmap
-
 
 def main(video_in, path_resultados):
     input_video = cv2.VideoCapture(video_in)
