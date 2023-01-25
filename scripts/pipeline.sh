@@ -73,7 +73,7 @@ cp $cwd/$inVideo $root/Apps/HeatMapIndicator/Input/input.mp4
 echo "ejecutando mapa de calor ...."
 # Ejecuta Mapa de calor
 cd $root/Apps/HeatMapIndicator
-python main.py $dateName
+python main.py -d $dateName
 mv $root/Apps/HeatMapIndicator/Output/$dateName $resDir/HeatMapIndicator
 
 
