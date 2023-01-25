@@ -22,7 +22,7 @@ def detect_bbox(percent,image,heatmap, path_resultados, case):
     #Guardo el mapa de calor
     cv2.imwrite(path_resultados + "/Heatmap{0}{1}.jpg".format(percent,case), result_overlay)
     with open(path_resultados + "/result{0}.txt".format(case), "a") as file:
-        file.write("Box {0}: ({1},{2}), ({3},{4}), ({5},{6}), ({7},{8}) \n".format(percent,x,y,x+w,y,x+w,y+h,x,y+h))
+        file.write("{0},{1},{2},{3}".format(percent,x,y,x+w,y+h))
     return heatmap
 
 
