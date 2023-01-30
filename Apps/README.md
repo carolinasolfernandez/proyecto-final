@@ -46,6 +46,15 @@ $\displaystyle\frac{Detectadas-Reales}{Max(Detecatadas, Reales)} *100%$
 - Error relativo de cantidad de personas detectadas promedio en dataset: 
 $\displaystyle\frac{\sum_{f=1}^{frames} Error_f}{frames}$
 
+- Precision Personas Detectadas: 
+$\displaystyle\frac{T_P}{T_P+F_P}$
+
+- Recall Personas Detectadas: 
+$\displaystyle\frac{T_P}{T_P+F_N}$
+
+- F1 Score Personas Detectadas: 
+$\displaystyle\frac{2*Precision*Recall}{Precision + Recall}$
+
 - Momento mas concurrido: Frames con mayor cantidad de detecciones
 
 - Zona más concurrida con distintos niveles de threshold por dos medios:

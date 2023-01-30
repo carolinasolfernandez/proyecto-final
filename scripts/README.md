@@ -8,6 +8,7 @@ El script `pipeline.sh`:
 - Evalua el dataset resultante usando trackeval
 - Evalua metricas de negocio
 - Genera un mapa de calor.
+- Guarda todas las metricas en un nueva linea del archivo resultados/resultados.csv
 
 Para usarlo, se necesita tener [instalado ailia-models y TrackEval](../README.md#instalar), referenciados en esta misma solucion.
 ```
