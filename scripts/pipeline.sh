@@ -86,7 +86,7 @@ mp2=($(sed -n 2p $resDir/metrics.txt))
 mp3=($(sed -n 3p $resDir/metrics.txt))
 mp4=($(sed -n 11p $resDir/metrics.txt))
 hm=($(sed -n 1p $resDir/HeatMapIndicator/IoUBB.txt))
-line="$dateName, $modelDir, $inVideo, ${te[0]}, ${te[1]}, ${te[2]}, ${te[3]}, ${te[4]}, ${te[5]}, ${te[6]}, ${te[7]}, ${te[29]}, ${te[30]}, ${te[31]}, ${te[32]}, ${te[33]}, ${te[34]}, ${te[39]}, ${te[40]}, ${mp1[3]}, ${mp2[2]}, ${mp3[2]}, ${mp4[6]}/${mp4[9]}, ${hm[0]}, $resDir"
+line="$dateName, $modelDir, $inVideo, ${te[0]}, ${te[1]}, ${te[2]}, ${te[3]}, ${te[4]}, ${te[5]}, ${te[6]}, ${te[7]}, ${te[29]}, ${te[30]}, ${te[31]}, ${te[32]}, ${te[33]}, ${te[34]}, ${te[39]}, ${te[40]}, ${mp1[3]}, ${mp2[2]}, ${mp3[2]}, ${mp4[6]}/${mp4[9]}, ${hm[0]}, ../resultados/$model/$dateName"
 
 echo $line >> $resDir/resultados.csv
 
