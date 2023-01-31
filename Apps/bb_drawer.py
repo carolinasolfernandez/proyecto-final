@@ -1,9 +1,9 @@
 import csv
 import cv2
 
-GT="../data/gt/large3.txt"
-video="../data/videos/large3.mp4"
-videoOut="../data/videos/large3-bb.mp4"
+GT="../data/gt/59.txt"
+video="../data/videos/59.mp4"
+videoOut="../data/videos/59-bb.mp4"
 
 # Read the ground truth data from a CSV file
 with open(GT, "r") as file:
@@ -39,13 +39,7 @@ while cap.isOpened():
             z = int(row[9])
             id = int(row[1])
             if z == 0:
-                for i in range(2):
-                    start = (x + i, y + i)
-                    end = (x + w - i, y + h - i)
-                    cv2.line(frame, start, end, (0, 255, 0), 2, cv2.LINE_AA, shift=4)
-                    start = (x + w - i, y + i)
-                    end = (x + i, y + h - i)
-                    cv2.line(frame, start, end, (0, 255, 0), 2, cv2.LINE_AA, shift=4)
+                cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 2)
             else:
                 cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
             
