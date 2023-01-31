@@ -40,8 +40,8 @@ python $model.py --video $cwd/$inVideo --savepath $cwd/$outVideo --env_id $envID
 # Muevo los resultados a la carpeta resultados/modelo/fecha
 resDir=$root/resultados/$model/$dateName
 mkdir -p $resDir
-mv $cwd/$outVideo $resDir/$dateName-out.mp4
-cp $cwd/$inVideo $resDir/
+mv $cwd/$outVideo $resDir/$inVideo-out.mp4
+#cp $cwd/$inVideo $resDir/
 mv $ailiaDir/output.txt $resDir/$dateName-out.txt
 
 # Copia dataset y GT a TrackEval
