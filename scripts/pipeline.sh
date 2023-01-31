@@ -37,10 +37,12 @@ cd $ailiaDir/$modelDir
 model="$(basename -- $modelDir)"
 python $model.py --video $cwd/$inVideo --savepath $cwd/$outVideo --env_id $envID --benchmark_count 5
 
+videoName="$(basename "$inVideo" | sed 's/\(.*\)\..*/\1/')"
+
 # Muevo los resultados a la carpeta resultados/modelo/fecha
 resDir=$root/resultados/$model/$dateName
 mkdir -p $resDir
-mv $cwd/$outVideo $resDir/$inVideo-out.mp4
+mv $cwd/$outVideo $resDir/$videoName-out.mp4
 #cp $cwd/$inVideo $resDir/
 mv $ailiaDir/output.txt $resDir/$dateName-out.txt
 
