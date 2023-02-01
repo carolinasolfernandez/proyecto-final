@@ -3,9 +3,9 @@
 # Ejecuta las metricas usando un video ya procesado y guardado en alguna carpeta de resultados
 
 ####### Datos a modificar ########
-nombre=large1
+nombre=MOT17-09
 modelDir=object_tracking/siam-mot
-date=20230119-042929 # fecha de ejecucion a reejecutar
+date=20230131-193958 # fecha de ejecucion a reejecutar
 
 
 #### Modificar solo si cambian directorios - sino se usa el nombre convencion

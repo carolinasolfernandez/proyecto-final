@@ -1,0 +1,2 @@
+fecha, algoritmo, video, TE: HOTA, TE: DetA, TE: AssA, TE: DetRe, TE: DetPr, TE: AssRe, TE: AssPr, TE: LocA, TE: IDF1, TE: IDR, TE: IDP, TE: IDTP, TE: IDFN, TE: IDFP, TE: SFDA, TE: ATA, MP: F1 Score Detecciones, MP: Precision Detecciones, MP: Recall Detecciones, MP: Max Personas Detectadas/Esperadas, HM: Error[%], Carpeta
+20230201-123736, object_detection/yolox, ../data/videos/MOT17-09.mp4, , , , , , , , , , , , , , , , , 0.5706039853892817, 0.9233997378283092, 0.4174536069348003, 14/26, 3.0301993154821822, ../resultados/yolox/20230201-123736
