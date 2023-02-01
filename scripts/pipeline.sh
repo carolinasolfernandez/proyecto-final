@@ -82,7 +82,7 @@ mv $root/Apps/HeatMapIndicator/Output/$dateName $resDir/HeatMapIndicator
 
 
 echo "rellenando el csv de resultados ..."
-echo "fecha, algoritmo, video, TE: HOTA, TE: DetA, TE: AssA, TE: DetRe, TE: DetPr, TE: AssRe, TE: AssPr, TE: LocA, TE: IDF1, TE: IDR, TE: IDP, TE: IDTP, TE: IDFN, TE: IDFP, TE: SFDA, TE: ATA, MP: F1 Score Detecciones, MP: Precision Detecciones, MP: Recall Detecciones, MP: Max Personas Detectadas/Esperadas, HM: Error[%], Carpeta" >> $resDir/resultados.csv
+echo "fecha, algoritmo, video, TE: HOTA, TE: DetA, TE: AssA, TE: DetRe, TE: DetPr, TE: AssRe, TE: AssPr, TE: LocA, TE: IDF1, TE: IDR, TE: IDP, TE: IDTP, TE: IDFN, TE: IDFP, TE: SFDA, TE: ATA, MP: F1 Score Detecciones, MP: Precision Detecciones, MP: Recall Detecciones, MP: Max Personas Detectadas/Esperadas, HM: IOUBB[%], Carpeta" >> $resDir/resultados.csv
 
 te=($(sed -n 2p $resDir/pedestrian_summary.txt))
 mp1=($(sed -n 1p $resDir/metrics.txt))
