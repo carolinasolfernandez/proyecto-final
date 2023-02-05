@@ -16,7 +16,7 @@ gt=../data/gt/$nombre.txt
 
 
 dateName="$(date +%Y%m%d-%H%M%S)"
-dirProcesadoAnterior=../resultados/$model/$date
+dirProcesadoAnterior=../resultados/$model/$nombre/$date
 datasetProcesado=$date-out.txt
 model="$(basename -- $modelDir)"
 
@@ -24,7 +24,7 @@ cwd=$(pwd)
 root=$(pwd)/..
 
 # Muevo los resultados a la carpeta resultados/modelo/fecha
-resDir=$root/resultados/$model/$dateName
+resDir=$root/resultados/$model/$nombre/$dateName
 mkdir -p $resDir
 cp $cwd/$dirProcesadoAnterior/$videoProcesado $resDir/$videoProcesado
 cp $cwd/$dirProcesadoAnterior/$datasetProcesado $resDir/$dateName-out.txt

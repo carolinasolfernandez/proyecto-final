@@ -41,7 +41,7 @@ python $model.py --video $cwd/$inVideo --savepath $cwd/$outVideo --env_id $envID
 videoName="$(basename "$inVideo" | sed 's/\(.*\)\..*/\1/')"
 
 # Muevo los resultados a la carpeta resultados/modelo/fecha
-resDir=$root/resultados/$model/$dateName
+resDir=$root/resultados/$model/$videoName/$dateName
 mkdir -p $resDir
 mv $cwd/$outVideo $resDir/$videoName-out.mp4
 
