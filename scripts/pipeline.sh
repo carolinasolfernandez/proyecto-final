@@ -30,22 +30,37 @@ done
 : ${modelDir:?Falta -m <modelDir>} ${inVideo:?Falta -i <inVideo.mp4>} ${gt:?Falta -g <gt.txt>}
 
 
-# Corre modelo
 ailiaDir=$root/ailia-models
 rm -f -- $ailiaDir/output.txt
-cd $ailiaDir/$modelDir
 model="$(basename -- $modelDir)"
-python $model.py --video $cwd/$inVideo --savepath $cwd/$outVideo --env_id $envID --benchmark_count 5
-
-
 videoName="$(basename "$inVideo" | sed 's/\(.*\)\..*/\1/')"
 
-# Muevo los resultados a la carpeta resultados/modelo/fecha
+#Creo carpeta de resultados
 resDir=$root/resultados/$model/$videoName/$dateName
 mkdir -p $resDir
-mv $cwd/$outVideo $resDir/$videoName-out.mp4
 
-#cp $cwd/$inVideo $resDir/
+
+stats_gpu=-1
+stats_cpu=-1
+stats_mem=-1
+stats_time=-1
+
+# Corre modelo
+#cd $ailiaDir/$modelDir
+#python $model.py --video $cwd/$inVideo --savepath $cwd/$outVideo --env_id $envID --benchmark_count 5 &
+
+
+# Corro modelo con stats --- Comentar estas lineas hasta el espacio y descomentar las dos de arriba
+statsFile=$cwd/stats.txt
+python $root/Apps/monitoring.py $statsFile $ailiaDir/$modelDir/$model.py --video $cwd/$inVideo --savepath $cwd/$outVideo --env_id=2 --benchmark_count 5
+mv $statsFile $resDir/stats.txt
+stats_gpu=$(awk 'NR==1 {print $NF}' $resDir/stats.txt)
+stats_cpu=$(awk 'NR==2 {print $NF}' $resDir/stats.txt)
+stats_mem=$(awk 'NR==3 {print $NF}' $resDir/stats.txt)
+stats_time=$(awk 'NR==4 {print $NF}' $resDir/stats.txt)
+
+# Muevo los resultados a la carpeta resultados/modelo/fecha
+mv $cwd/$outVideo $resDir/$videoName-out.mp4
 mv $ailiaDir/output.txt $resDir/$dateName-out.txt
 
 # Copia dataset y GT a TrackEval
@@ -82,7 +97,7 @@ mv $root/Apps/HeatMapIndicator/Output/$dateName $resDir/HeatMapIndicator
 
 
 echo "rellenando el csv de resultados ..."
-echo "fecha, algoritmo, video, TE: HOTA, TE: DetA, TE: AssA, TE: DetRe, TE: DetPr, TE: AssRe, TE: AssPr, TE: LocA, TE: IDF1, TE: IDR, TE: IDP, TE: IDTP, TE: IDFN, TE: IDFP, TE: SFDA, TE: ATA, MP: F1 Score Detecciones, MP: Precision Detecciones, MP: Recall Detecciones, MP: Max Personas Detectadas/Esperadas, HM: IOUBB[%], Carpeta" >> $resDir/resultados.csv
+echo "fecha, algoritmo, video, TE: HOTA, TE: DetA, TE: AssA, TE: DetRe, TE: DetPr, TE: AssRe, TE: AssPr, TE: LocA, TE: IDF1, TE: IDR, TE: IDP, TE: IDTP, TE: IDFN, TE: IDFP, TE: SFDA, TE: ATA, MP: F1 Score Detecciones, MP: Precision Detecciones, MP: Recall Detecciones, MP: Max Personas Detectadas/Esperadas, HM: IOUBB[%], Tiempo [s], RAM [MB], CPU [%], GPU [%], Carpeta" >> $resDir/resultados.csv
 
 te=($(sed -n 2p $resDir/pedestrian_summary.txt))
 mp1=($(sed -n 1p $resDir/metrics.txt))
@@ -90,7 +105,8 @@ mp2=($(sed -n 2p $resDir/metrics.txt))
 mp3=($(sed -n 3p $resDir/metrics.txt))
 mp4=($(sed -n 11p $resDir/metrics.txt))
 hm=($(sed -n 1p $resDir/HeatMapIndicator/IoUBB.txt))
-line="$dateName, $modelDir, $inVideo, ${te[0]}, ${te[1]}, ${te[2]}, ${te[3]}, ${te[4]}, ${te[5]}, ${te[6]}, ${te[7]}, ${te[29]}, ${te[30]}, ${te[31]}, ${te[32]}, ${te[33]}, ${te[34]}, ${te[39]}, ${te[40]}, ${mp1[3]}, ${mp2[2]}, ${mp3[2]}, ${mp4[6]}/${mp4[9]}, ${hm[0]}, ../resultados/$model/$dateName"
+
+line="$dateName, $modelDir, $inVideo, ${te[0]}, ${te[1]}, ${te[2]}, ${te[3]}, ${te[4]}, ${te[5]}, ${te[6]}, ${te[7]}, ${te[29]}, ${te[30]}, ${te[31]}, ${te[32]}, ${te[33]}, ${te[34]}, ${te[39]}, ${te[40]}, ${mp1[3]}, ${mp2[2]}, ${mp3[2]}, ${mp4[6]}/${mp4[9]}, ${hm[0]}, $stats_time, $stats_mem, $stats_cpu, $stats_gpu, ../resultados/$model/$dateName"
 
 echo $line >> $resDir/resultados.csv
 

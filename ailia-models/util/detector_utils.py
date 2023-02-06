@@ -109,9 +109,11 @@ def plot_results(detector, img, category=None, segm_masks=None, logging=True):
     h, w = img.shape[0], img.shape[1]
 
     count = detector.get_object_count() if hasattr(detector, 'get_object_count') else len(detector)
+    '''
     if logging:
         print(f'object_count={count}')
-
+    '''
+    
     # prepare color data
     colors = []
     for idx in range(count):
@@ -121,6 +123,7 @@ def plot_results(detector, img, category=None, segm_masks=None, logging=True):
             cat=category[int(obj.category)]
         
         # print result
+        '''@TODO Proyecto Descomentar para tener logs
         if logging:
             print(f'+ idx={idx}')
             print(
@@ -133,6 +136,7 @@ def plot_results(detector, img, category=None, segm_masks=None, logging=True):
             print(f'  y={obj.y}')
             print(f'  w={obj.w}')
             print(f'  h={obj.h}')
+        '''
 
         if cat == "person":
             write_predictions2(idx, obj.prob, (w * obj.x), (h * obj.y), (w * obj.w), (h * obj.h))

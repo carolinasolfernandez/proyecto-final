@@ -1,0 +1,33 @@
+------------------
+System Information
+------------------
+      Time of this report: 2/6/2023, 04:45:45
+             Machine name: WINDOWS
+         Operating System: Windows 11 Home 64-bit (10.0, Build 22621) (22621.ni_release.220506-1250)
+                 Language: English (Regional Setting: English)
+      System Manufacturer: HP
+             System Model: HP Spectre x360 Convertible 13-aw0xxx
+                     BIOS: F.30 (type: UEFI)
+                Processor: Intel(R) Core(TM) i7-1065G7 CPU @ 1.30GHz (8 CPUs), ~1.5GHz
+                   Memory: 16384MB RAM
+      Available OS Memory: 16062MB RAM
+                Page File: 18281MB used, 4090MB available
+          DWM DPI Scaling: Disabled
+                 Miracast: Available, with HDCP
+Microsoft Graphics Hybrid: Not Supported
+
+
+---------------
+Display Devices
+---------------
+           Card name: Intel(R) Iris(R) Plus Graphics
+        Manufacturer: Intel Corporation
+           Chip type: Intel(R) Iris(R) Graphics Family
+ Driver Problem Code: Unknown
+      Display Memory: 8158 MB
+    Dedicated Memory: 128 MB
+       Shared Memory: 8030 MB
+        Current Mode: 1280 x 720 (32 bit) (60Hz)
+         HDR Support: Supported
+    Display Topology: Extend
+
