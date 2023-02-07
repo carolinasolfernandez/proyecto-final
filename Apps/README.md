@@ -15,6 +15,28 @@ Folder output es opcional. Si falta, se guarda los resultados en la carpeta actu
  python metrics.py -d ../resultados/yolox/20221104-155223/20221104-155223-out.txt -g ../resultados/yolox/20221104-155223/gt.txt
 ```
 
+## Metricas disponibles
+- Error relativo de cantidad de personas detectadas por frame: 
+$\displaystyle\frac{Detectadas-Reales}{Max(Detecatadas, Reales)} *100%$
+
+- Error relativo de cantidad de personas detectadas promedio en dataset: 
+$\displaystyle\frac{\sum_{f=1}^{frames} Error_f}{frames}$
+
+- Precision Personas Detectadas: 
+$\displaystyle\frac{T_P}{T_P+F_P}$
+
+- Recall Personas Detectadas: 
+$\displaystyle\frac{T_P}{T_P+F_N}$
+
+- F1 Score Personas Detectadas: 
+$\displaystyle\frac{2*Precision*Recall}{Precision + Recall}$
+
+- Momento mas concurrido: Frames con mayor cantidad de detecciones
+
+- Zona más concurrida con distintos niveles de threshold por dos medios:
+1. Sustracción de fondo del video.
+2. A traves de los bounding box detectados y ground truth en caso de haber.
+
 # HeatMap
 - Instalacion:
 ```
@@ -39,28 +61,6 @@ python main.py [output-folder-name : optional]
    - La información de entrada, de salida y el código utilizado quedan almacenado en HeatMapIndicator/Output/Timestamp con el horario de la ejecución del script.
 
 
-## Metricas disponibles
-- Error relativo de cantidad de personas detectadas por frame: 
-$\displaystyle\frac{Detectadas-Reales}{Max(Detecatadas, Reales)} *100%$
-
-- Error relativo de cantidad de personas detectadas promedio en dataset: 
-$\displaystyle\frac{\sum_{f=1}^{frames} Error_f}{frames}$
-
-- Precision Personas Detectadas: 
-$\displaystyle\frac{T_P}{T_P+F_P}$
-
-- Recall Personas Detectadas: 
-$\displaystyle\frac{T_P}{T_P+F_N}$
-
-- F1 Score Personas Detectadas: 
-$\displaystyle\frac{2*Precision*Recall}{Precision + Recall}$
-
-- Momento mas concurrido: Frames con mayor cantidad de detecciones
-
-- Zona más concurrida con distintos niveles de threshold por dos medios:
-1. Sustracción de fondo del video.
-2. A traves de los bounding box detectados y ground truth en caso de haber.
-
 ## Salida
 - Grafico con evolucion por frame: [`error_obj.png`](../resultados/yolox/20221104-162639/error_obj.png)
 - Archivo con todas las metricas: [`metrics.txt`](../resultados/yolox/20221104-162639/metrics.txt)
@@ -68,3 +68,14 @@ $\displaystyle\frac{2*Precision*Recall}{Precision + Recall}$
 - HeatMap por bounding box detectado[`Heatmapdetection.jpg`](https://github.com/carolinasolfernandez/proyecto-final/blob/main/Apps/HeatMapIndicator/Output/202311815129/Heatmapdetection.jpg)
 - HeatMap por bounding box ground truth[`Heatmapgt.jpg`](https://github.com/carolinasolfernandez/proyecto-final/blob/main/Apps/HeatMapIndicator/Output/202311815129/Heatmapgt.jpg)
 - Archivo con bounding box para cada threshold: [`result.txt`](https://github.com/carolinasolfernandez/proyecto-final/blob/main/Apps/HeatMapIndicator/Output/202311815129/result.txt)
+
+# Filter Objects
+Filtra de un dataset los objetos que cumplen simultaneamente con todo lo siguiente:
+- tienen un promedio de probabillidad menor a 0.5 en todos los frames que aparece
+- no aparece en frame 1
+- aparecen en una coordenada distinta a las iniciales (dejando un margen de 5px por borde)
+- aparecen en menos de 50 frames
+```
+python filter_objects.py <input_file> <output_file>
+
+

@@ -51,7 +51,7 @@ if [ $monitor -eq 1 ]
 then
     # Corro modelo con stats --- Comentar estas lineas hasta el espacio y descomentar las dos de arriba
     statsFile=$cwd/stats.txt
-    python $root/Apps/monitoring.py $statsFile $ailiaDir/$modelDir/$model.py --video $cwd/$inVideo --savepath $cwd/$outVideo --env_id=2 --benchmark_count 5
+    python $root/Apps/monitoring.py $statsFile $ailiaDir/$modelDir/$model.py --video $cwd/$inVideo --savepath $cwd/$outVideo --env_id $envID --benchmark_count 5
     mv $statsFile $resDir/stats.txt
     stats_gpu=$(awk 'NR==1 {print $NF}' $resDir/stats.txt)
     stats_cpu=$(awk 'NR==2 {print $NF}' $resDir/stats.txt)
