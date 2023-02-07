@@ -3,13 +3,14 @@
 # Ejecuta las metricas usando un video ya procesado y guardado en alguna carpeta de resultados
 
 ####### Datos a modificar ########
-nombre=59
-modelDir=object_tracking/siam-mot
-date=20230206-052246 # fecha de ejecucion a reejecutar
 
 nombre=large1
 modelDir=object_tracking/siam-mot
 date=20230207-031124 # fecha de ejecucion a reejecutar
+
+nombre=59
+modelDir=object_tracking/siam-mot
+date=20230206-052246 # fecha de ejecucion a reejecutar
 
 #### Modificar solo si cambian directorios - sino se usa el nombre convencion
 inVideo=../data/videos/$nombre.mp4
