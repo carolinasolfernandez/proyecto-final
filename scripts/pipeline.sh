@@ -3,6 +3,8 @@
 # sh pipeline.sh -i ../data/videos/59.mp4 -g ../data/gt/59.txt -m object_detection/yolox
 
 envID=2 #index de GPU. Ver en el luncher, el index de la unidad
+monitor=0
+
 
 #modelDir=object_detection/yolox
 #modelDir=object_tracking/siam-mot
@@ -45,19 +47,22 @@ stats_cpu=-1
 stats_mem=-1
 stats_time=-1
 
-# Corre modelo
-#cd $ailiaDir/$modelDir
-#python $model.py --video $cwd/$inVideo --savepath $cwd/$outVideo --env_id $envID --benchmark_count 5 &
+if [ $monitor -eq 1 ]
+then
+    # Corro modelo con stats --- Comentar estas lineas hasta el espacio y descomentar las dos de arriba
+    statsFile=$cwd/stats.txt
+    python $root/Apps/monitoring.py $statsFile $ailiaDir/$modelDir/$model.py --video $cwd/$inVideo --savepath $cwd/$outVideo --env_id=2 --benchmark_count 5
+    mv $statsFile $resDir/stats.txt
+    stats_gpu=$(awk 'NR==1 {print $NF}' $resDir/stats.txt)
+    stats_cpu=$(awk 'NR==2 {print $NF}' $resDir/stats.txt)
+    stats_mem=$(awk 'NR==3 {print $NF}' $resDir/stats.txt)
+    stats_time=$(awk 'NR==4 {print $NF}' $resDir/stats.txt)
+else
+    # Corre modelo
+    cd $ailiaDir/$modelDir
+    python $model.py --video $cwd/$inVideo --savepath $cwd/$outVideo --env_id $envID --benchmark_count 5
+fi
 
-
-# Corro modelo con stats --- Comentar estas lineas hasta el espacio y descomentar las dos de arriba
-statsFile=$cwd/stats.txt
-python $root/Apps/monitoring.py $statsFile $ailiaDir/$modelDir/$model.py --video $cwd/$inVideo --savepath $cwd/$outVideo --env_id=2 --benchmark_count 5
-mv $statsFile $resDir/stats.txt
-stats_gpu=$(awk 'NR==1 {print $NF}' $resDir/stats.txt)
-stats_cpu=$(awk 'NR==2 {print $NF}' $resDir/stats.txt)
-stats_mem=$(awk 'NR==3 {print $NF}' $resDir/stats.txt)
-stats_time=$(awk 'NR==4 {print $NF}' $resDir/stats.txt)
 
 # Muevo los resultados a la carpeta resultados/modelo/fecha
 mv $cwd/$outVideo $resDir/$videoName-out.mp4
