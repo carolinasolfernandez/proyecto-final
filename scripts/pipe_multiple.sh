@@ -2,7 +2,7 @@
 
 # sh pipe_multiple.sh
 
-video=59
+video=large1
 
 ## declare an array variable
 declare -a arr=("object_detection/yolov3" "object_detection/yolov7" "object_detection/yolox" "object_tracking/siam-mot")

@@ -1,0 +1,4 @@
+GPU utilization [%]: 286.6
+CPU utilization [%]: 53.5
+Memory utilization [Mb]: 4082.00390625
+Time elapsed [s]: 7585.161531209946
