@@ -1,9 +1,10 @@
 import csv
 import cv2
 
-GT="../data/gt/large1.txt"
-video="../data/videos/large1.mp4"
-videoOut="../data/videos/large1-bb.mp4"
+GT="../resultados/siam-mot/large1/20230207-194647/20230207-194647-out-filtered.txt"
+GT="../data/gt/large2.txt"
+video="../data/videos/large2.mp4"
+videoOut="../data/videos/large2-bb.mp4"
 
 # Read the ground truth data from a CSV file
 with open(GT, "r") as file:

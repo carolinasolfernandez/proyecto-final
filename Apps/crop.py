@@ -1,13 +1,20 @@
 import numpy as np
 import cv2
+import sys
 
-video = '../data/videos/large1.mp4'
+video = '../data/videos/59.mp4'
 out = 'out.mp4'
 
-start_frame=1720
-last_frame=1720
-x,y,w,h =1145,	43,	56,	163
+video = sys.argv[1]
+start_frame = sys.argv[2]
+last_frame = sys.argv[3]
+x,y,w,h = sys.argv[4:]
 
+'''
+start_frame=540
+last_frame=570
+x,y,w,h =1095,	0,	130,	225
+'''
   #108 -> reconocido 0.428 OK
 #x,y,w,h = 702,	368,	24,	39  #108 -> reconocido 0.428 OK
 #x,y,w,h = 612,	1,	50,	108 #112 0.52 -> No son piernas NOK
@@ -20,7 +27,12 @@ x,y,w,h =1145,	43,	56,	163
 #x,y,w,h = 1036,	424,	214,	285 #2 0.98
 #x,y,w,h = 1011,	108,	158,	214 #120 0.99
 
-
+start_frame=int(start_frame)
+last_frame=int(last_frame)
+x=int(x)
+y=int(y)
+w=int(w)
+h=int(h)
 # Open the video
 cap = cv2.VideoCapture(video)
 

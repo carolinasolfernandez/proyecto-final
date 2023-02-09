@@ -281,6 +281,8 @@ def recognize_from_video(video, detector, pp_net):
 
         x = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         detect_object, seg_masks = detect_objects(x, detector, pp_net)
+        print(detect_object)
+        print(seg_masks)
         res_img = plot_results(
             detect_object, frame, CATEGORY, segm_masks=seg_masks
         )
