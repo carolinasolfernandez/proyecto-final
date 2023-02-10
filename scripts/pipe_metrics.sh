@@ -6,11 +6,8 @@
 
 nombre=large1
 modelDir=object_tracking/siam-mot
-date=20230207-031124 # fecha de ejecucion a reejecutar
+date=20230209-010953 # fecha de ejecucion a reejecutar
 
-nombre=59
-modelDir=object_tracking/siam-mot
-date=20230206-052246 # fecha de ejecucion a reejecutar
 
 #### Modificar solo si cambian directorios - sino se usa el nombre convencion
 inVideo=../data/videos/$nombre.mp4
@@ -63,6 +60,8 @@ cd $root/Apps
 python metrics.py -d $salidaDataset -g $resDir/gt.txt -o $resDir
 
 
+hm=-1
+'''
 # Copio archivos necesario para HeatMapIndicator
 cp $root/$gt $root/Apps/HeatMapIndicator/Input/gt.txt
 cp $salidaDataset $root/Apps/HeatMapIndicator/Input/detection.txt
@@ -73,7 +72,8 @@ echo "ejecutando mapa de calor ...."
 cd $root/Apps/HeatMapIndicator
 python main.py -d $dateName
 mv $root/Apps/HeatMapIndicator/Output/$dateName $resDir/HeatMapIndicator
-
+hm=($(sed -n 1p $resDir/HeatMapIndicator/IoUBB.txt))
+'''
 
 echo "rellenando el csv de resultados ..."
 echo "fecha, algoritmo, video, TE: HOTA, TE: DetA, TE: AssA, TE: DetRe, TE: DetPr, TE: AssRe, TE: AssPr, TE: LocA, TE: IDF1, TE: IDR, TE: IDP, TE: IDTP, TE: IDFN, TE: IDFP, TE: SFDA, TE: ATA, MP: F1 Score Detecciones, MP: Precision Detecciones, MP: Recall Detecciones, MP: Max Personas Detectadas/Esperadas, HM: IOU[%], Tiempo [s], RAM [MB], CPU [%], GPU [%], Carpeta" >> $resDir/resultados.csv
@@ -83,7 +83,6 @@ mp1=($(sed -n 1p $resDir/metrics.txt))
 mp2=($(sed -n 2p $resDir/metrics.txt))
 mp3=($(sed -n 3p $resDir/metrics.txt))
 mp4=($(sed -n 11p $resDir/metrics.txt))
-hm=($(sed -n 1p $resDir/HeatMapIndicator/IoUBB.txt))
 line="$dateName, $modelDir-filtered, $inVideo, ${te[0]}, ${te[1]}, ${te[2]}, ${te[3]}, ${te[4]}, ${te[5]}, ${te[6]}, ${te[7]}, ${te[29]}, ${te[30]}, ${te[31]}, ${te[32]}, ${te[33]}, ${te[34]}, ${te[39]}, ${te[40]}, ${mp1[3]}, ${mp2[2]}, ${mp3[2]}, ${mp4[6]}/${mp4[9]}, ${hm[0]}, -1, -1, -1, -1, ../resultados/$model/$dateName"
 
 echo $line >> $resDir/resultados.csv
