@@ -3,7 +3,7 @@
 # sh pipeline.sh -i ../data/videos/59.mp4 -g ../data/gt/59.txt -m object_detection/yolox
 
 envID=2 #index de GPU. Ver en el luncher, el index de la unidad
-monitor=0
+monitor=1
 
 
 #modelDir=object_detection/yolox

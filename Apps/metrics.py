@@ -17,7 +17,7 @@ class Metrics():
         datasetFrames= dataset[-1:][0].get("frame")
         gtFrames= gt[-1:][0].get("frame")
         self.frames = int(max(datasetFrames, gtFrames))
-        self.iou_threshold = 0.5
+        self.iou_threshold = 0.2
 
     def getErrorObjectDetectionByFrameWithIOU(self, gt_bboxesFrame, det_bboxesFrame):
         precision_frame=[]

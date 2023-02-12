@@ -1,9 +1,14 @@
 import csv
 import cv2
 
-GT="../resultados/siam-mot/large1/20230209-035112/20230209-035112-out-filtered.txt"
-video="../data/videos/large1.mp4"
-videoOut="../data/videos/large1-threshold-filtered-20230209-035112-bb.mp4"
+'''
+Dibuja Bounding Boxes en el video usando un archivo de entrada
+'''
+
+
+GT="./resultados/siam-mot/large1/20230212-182152/20230212-182152-out-filtered-encontradas.txt"
+video="./data/videos/large1.mp4"
+videoOut="./resultados/siam-mot/large1/20230212-182152/20230212-182152-out-filtered-encontradas-bb.mp4"
 
 # Read the ground truth data from a CSV file
 with open(GT, "r") as file:

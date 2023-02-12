@@ -1,7 +1,13 @@
 import cv2
+
+'''
+Convierte un video a frames
+'''
+
 video = '../data/videos/large1.mp4'
 name = './large1/'
 vidcap = cv2.VideoCapture(video)
+
 
 success,image = vidcap.read()
 count = 0

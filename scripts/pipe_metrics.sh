@@ -4,9 +4,9 @@
 
 ####### Datos a modificar ########
 
-nombre=large1
+nombre=59
 modelDir=object_tracking/siam-mot
-date=20230209-010953 # fecha de ejecucion a reejecutar
+date=20230212-171816 # fecha de ejecucion a reejecutar
 
 
 #### Modificar solo si cambian directorios - sino se usa el nombre convencion
@@ -32,12 +32,19 @@ cp $root/$dirProcesadoAnterior/$datasetProcesado $resDir/$dateName-out.txt
 salidaDataset=$resDir/$dateName-out.txt
 
 
-# Ejecuta Filtrado
 cd $root/Apps
+#: '
+# Ejecuta Filtrado
 python filter_objects.py $resDir/$dateName-out.txt $resDir/$dateName-out-filtered.txt
 salidaDataset=$resDir/$dateName-out-filtered.txt
+#'
 
-
+#: '
+#Ejecuto recuperacion de personas perdidas
+entradaRecuperacion=$salidaDataset
+salidaDataset=$resDir/$dateName-out-filtered-encontradas.txt
+python personas_perdidas.py $entradaRecuperacion $salidaDataset
+#'
 
 # Copia dataset y GT a TrackEval
 evalDirGT=$root/TrackEval/data/gt/mot_challenge/PF-train/PF-01/gt
@@ -61,7 +68,7 @@ python metrics.py -d $salidaDataset -g $resDir/gt.txt -o $resDir
 
 
 hm=-1
-'''
+
 # Copio archivos necesario para HeatMapIndicator
 cp $root/$gt $root/Apps/HeatMapIndicator/Input/gt.txt
 cp $salidaDataset $root/Apps/HeatMapIndicator/Input/detection.txt
@@ -73,7 +80,7 @@ cd $root/Apps/HeatMapIndicator
 python main.py -d $dateName
 mv $root/Apps/HeatMapIndicator/Output/$dateName $resDir/HeatMapIndicator
 hm=($(sed -n 1p $resDir/HeatMapIndicator/IoUBB.txt))
-'''
+
 
 echo "rellenando el csv de resultados ..."
 echo "fecha, algoritmo, video, TE: HOTA, TE: DetA, TE: AssA, TE: DetRe, TE: DetPr, TE: AssRe, TE: AssPr, TE: LocA, TE: IDF1, TE: IDR, TE: IDP, TE: IDTP, TE: IDFN, TE: IDFP, TE: SFDA, TE: ATA, MP: F1 Score Detecciones, MP: Precision Detecciones, MP: Recall Detecciones, MP: Max Personas Detectadas/Esperadas, HM: IOU[%], Tiempo [s], RAM [MB], CPU [%], GPU [%], Carpeta" >> $resDir/resultados.csv
