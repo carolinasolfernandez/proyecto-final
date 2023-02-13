@@ -117,6 +117,9 @@ def recognize_from_video():
     else:
         writer = None
 
+    fps, frames = cap.get(cv2.CAP_PROP_FPS), cap.get(cv2.CAP_PROP_FRAME_COUNT)
+    out = cv2.VideoWriter("out.mp4", cv2.VideoWriter_fourcc(*'MP4V'), fps, (f_w, f_h))
+
     frame_shown = False
     while(True):
         ret, frame = cap.read()

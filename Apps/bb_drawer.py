@@ -6,9 +6,9 @@ Dibuja Bounding Boxes en el video usando un archivo de entrada
 '''
 
 
-GT="./resultados/siam-mot/large1/20230212-211620/20230212-211620-out-filtered-encontradas.txt"
-video="./data/videos/large1.mp4"
-videoOut="./resultados/siam-mot/large1/20230212-211620/20230212-211620-out-filtered-encontradas-bb.mp4"
+GT="./resultados/siam-mot/out11/20230213-023259/20230213-023259-out-filtered.txt"
+video="./data/videos/large1-matrix/out11.mp4"
+videoOut="./data/videos/59-11-bb.mp4"
 
 # Read the ground truth data from a CSV file
 with open(GT, "r") as file:

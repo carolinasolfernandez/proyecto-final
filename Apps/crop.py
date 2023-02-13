@@ -2,19 +2,21 @@ import numpy as np
 import cv2
 import sys
 
-video = '../data/videos/59.mp4'
-out = 'out.mp4'
+#python ../data/videos/59.mp4 1 2200 0 0 640 360
 
+'''
 video = sys.argv[1]
 start_frame = sys.argv[2]
 last_frame = sys.argv[3]
 x,y,w,h = sys.argv[4:]
+'''
 
-'''
-start_frame=540
-last_frame=570
-x,y,w,h =1095,	0,	130,	225
-'''
+video = '../data/videos/59.mp4'
+out = 'out22.mp4'
+start_frame=1
+last_frame=734
+x,y,w,h =640, 360, 640, 360
+
   #108 -> reconocido 0.428 OK
 #x,y,w,h = 702,	368,	24,	39  #108 -> reconocido 0.428 OK
 #x,y,w,h = 612,	1,	50,	108 #112 0.52 -> No son piernas NOK
@@ -34,7 +36,7 @@ y=int(y)
 w=int(w)
 h=int(h)
 # Open the video
-cap = cv2.VideoCapture(video)
+cap = cv2.VideoCapture(str(video))
 
 # Initialize frame counter
 cnt = 0

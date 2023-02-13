@@ -4,9 +4,9 @@
 
 ####### Datos a modificar ########
 
-nombre=59
+nombre=out11
 modelDir=object_tracking/siam-mot
-date=20230212-171816 # fecha de ejecucion a reejecutar
+date=20230213-023259 # fecha de ejecucion a reejecutar
 
 
 #### Modificar solo si cambian directorios - sino se usa el nombre convencion

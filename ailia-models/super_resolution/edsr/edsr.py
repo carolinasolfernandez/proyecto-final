@@ -104,7 +104,13 @@ def recognize_from_video():
     net = ailia.Net(MODEL_PATH, WEIGHT_PATH, env_id=-1)
 
     capture = webcamera_utils.get_capture(args.video)
-
+    
+    f_h = int(capture.get(cv2.CAP_PROP_FRAME_HEIGHT) * int(args.scale))
+    f_w = int(capture.get(cv2.CAP_PROP_FRAME_WIDTH) * int(args.scale))
+    writer = webcamera_utils.get_writer(args.savepath, f_h, f_w)
+    fps, frames = capture.get(cv2.CAP_PROP_FPS), capture.get(cv2.CAP_PROP_FRAME_COUNT)
+    out = cv2.VideoWriter("out.mp4", cv2.VideoWriter_fourcc(*'MP4V'), fps, (f_w, f_h))
+    
     # create video writer if savepath is specified as video format
     if args.savepath != SAVE_IMAGE_PATH:
         logger.warning(
@@ -113,6 +119,8 @@ def recognize_from_video():
         f_h = int(capture.get(cv2.CAP_PROP_FRAME_HEIGHT) * int(args.scale))
         f_w = int(capture.get(cv2.CAP_PROP_FRAME_WIDTH) * int(args.scale))
         writer = webcamera_utils.get_writer(args.savepath, f_h, f_w)
+        fps, frames = capture.get(cv2.CAP_PROP_FPS), capture.get(cv2.CAP_PROP_FRAME_COUNT)
+        out = cv2.VideoWriter("out.mp4", cv2.VideoWriter_fourcc(*'MP4V'), fps, (f_w, f_h))
     else:
         writer = None
 
@@ -146,6 +154,8 @@ def recognize_from_video():
             output_img = np.clip(output_img, 0, 255)
             output_img = output_img.astype(np.uint8)
 
+            out.write(output_img)
+
         cv2.imshow('frame', output_img)
         frame_shown = True
 
@@ -154,6 +164,7 @@ def recognize_from_video():
             writer.write(output_img)
 
     capture.release()
+    out.release()
     cv2.destroyAllWindows()
     if writer is not None:
         writer.release()

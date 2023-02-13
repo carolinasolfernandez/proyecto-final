@@ -46,6 +46,10 @@ def filter_file(filename, output_filename):
         for line in f_in:
             frame, obj_id, x, y, width, height, probability, x1,y1,z1 = line.split(',')
             obj_id = int(obj_id)
+            if float(x) < 0:
+                x = str(0)
+            if float(y) < 0:
+                y = str(0)
             if obj_id not in ids_to_filter and float(height) < 510:
                 f_out.write(line)
 

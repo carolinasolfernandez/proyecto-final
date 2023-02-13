@@ -75,7 +75,22 @@ Filtra de un dataset los objetos que cumplen simultaneamente con todo lo siguien
 - no aparece en frame 1
 - aparecen en una coordenada distinta a las iniciales (dejando un margen de 5px por borde)
 - aparecen en menos de 50 frames
+O si la altura de la BB no es logica teniendo en cuenta la posicion de la camara y de la persona
 ```
 python filter_objects.py <input_file> <output_file>
+```
+
+# Recuperar personas
+Si una persona se pierde por cruce u oclusion parcial:
+- Toma la ultima posicion conocida
+- La busca en los siguientes X frames (X seteado en 200 dado el promedio en que una persona se ocluye)
+- Si encuentra una nueva deteccion en un radio menor a R:
+   - Asocia la nueva deteccion a la deteccion perdida
+   - Completa los frames perdidos interpolando la posicion actual y la ultima conocida
+- Si no encuentra la deteccion:
+   - Elimina la busqueda de detecciones
+```
+python personas_perdidas.py <input_file> <output_file>
+```
 
 

@@ -13,7 +13,7 @@ La salida es un archivo con las detecciones existentes y nuevas
 #python personas_perdidas.py ../resultados/siam-mot/59/20230207-195238/20230207-195238-out.txt ./results.txt
 
 
-radius = 5
+radius = 10
 max_miss_frames = 215
 
 def is_point_in_circle(x1, y1, r, x2, y2):
