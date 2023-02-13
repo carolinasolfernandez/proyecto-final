@@ -13,7 +13,7 @@ La salida es un archivo con las detecciones existentes y nuevas
 #python personas_perdidas.py ../resultados/siam-mot/59/20230207-195238/20230207-195238-out.txt ./results.txt
 
 
-radius = 10
+radius = 5
 max_miss_frames = 215
 
 def is_point_in_circle(x1, y1, r, x2, y2):
@@ -96,12 +96,38 @@ def find_people(frames):
                             found_missing_person = id_missing_person
                             associations_ids[id] = id_missing_person
 
+                            #''' Corrijo las posiciones tomando una velocidad lineal
+                            last_seen_frame = missing_frame-1
+                            if frame > last_seen_frame:
+                                delta_frames = frame - last_seen_frame
+                                for p in frames[last_seen_frame]: 
+                                    id1, x1, y1, width1, height1, prob1, xx1, yy1, zz1 = p
+                                    if id1 == id_missing_person:
+                                        break
+                                delta_w = (width-width1)/delta_frames
+                                delta_h = (height-height1)/delta_frames
+                                delta_x = (x-x1)/delta_frames
+                                delta_y = (y-y1)/delta_frames
+                            
+                            for i in range(missing_frame, frame):
+                                if i not in missing_people_frames:
+                                    missing_people_frames[i] = []
+                                x1=x1+delta_x
+                                y1=y1+delta_y
+                                width1=width1+delta_w
+                                height1=height1+delta_h
+                                person_add = (id, x1, y1, width1, height1, prob, xx, yy, zz)
+                                missing_people_frames[i].append(person_add)
+                            break
+
+                            ''' Implementacion sin correccion de posicioness    
                             for i in range(missing_frame, frame):
                                 if i not in missing_people_frames:
                                     missing_people_frames[i] = []
                                 missing_people_frames[i].append(person)
 
                             break
+                            '''
 
                     if is_new_person:
                         new_people.append(person)
