@@ -103,6 +103,22 @@ num_colors = 50
 vis_colors = get_colors(num_colors)
 
 
+def frame_predict(frame, results: BBox, frame_count):
+    ids = results.ids
+    results = boxes_filter(results, ids >= 0)
+    bbox = results.bbox
+    ids = results.ids.tolist()
+    labels = results.labels.tolist()
+    scores = results.scores.tolist()
+    class_names = ['person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'train', 'truck', 'boat']
+
+    for i, entity_id in enumerate(ids):
+        class_name = class_names[int(labels[i]) - 1]
+        x1, y1, x2, y2 = (np.round(bbox[i, :])).astype(int)
+        if class_name == "person":
+            write_predictions(frame_count, entity_id, scores[i], x1, y1, x2-x1, y2-y1)
+    return frame
+
 def frame_vis_generator(frame, results: BBox, frame_count):
     ids = results.ids
     results = boxes_filter(results, ids >= 0)
@@ -242,6 +258,7 @@ def refine_tracks(net, features, tracks):
 
     proposals = tracks[0].bbox.astype(np.float32)
     inputs = features[:4] + [proposals]
+    args.onnx=True # TODO @salva remove
     if not args.onnx:
         output = net.predict(inputs)
     else:
@@ -273,6 +290,7 @@ def predict(rpn, box, tracker, feat_ext, img, cache={}):
     img, pad, scale = preprocess(img)
 
     # feedforward
+    args.onnx=True  # TODO @salva remove
     if not args.onnx:
         output = rpn.predict([img])
     else:
@@ -376,8 +394,10 @@ def recognize_from_video(rpn, box, tracker, feat_ext):
         img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         boxes = predict(rpn, box, tracker, feat_ext, img)
 
-        res_img = frame_vis_generator(frame, boxes, frame_count)
 
+        # res_img = frame_vis_generator(frame, boxes, frame_count) TODO @carolinasolfernandez
+        frame_predict(frame, boxes, frame_count)
+        '''  TODO @carolinasolfernandez
         # show
         if args.gui or args.video:
             cv2.imshow('frame', res_img)
@@ -388,11 +408,12 @@ def recognize_from_video(rpn, box, tracker, feat_ext):
         # save results
         if writer is not None:
             writer.write(res_img.astype(np.uint8))
-        
+        '''
+        print(frame_count, flush=True)
         frame_count += 1
 
     capture.release()
-    cv2.destroyAllWindows()
+    # cv2.destroyAllWindows()
     if writer is not None:
         writer.release()
 
@@ -427,7 +448,7 @@ def main():
     check_and_download_models(weight_feat_path, model_feat_path, REMOTE_PATH)
 
     env_id = args.env_id
-
+    args.onnx=True # TODO @salva remove
     # initialize
     if not args.onnx:
         rpn = ailia.Net(model_rpn_path, weight_rpn_path, env_id=env_id)
