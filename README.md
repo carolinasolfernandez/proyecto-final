@@ -3,7 +3,7 @@
 El siguiente repositorio contiene el código desarrollado bajo el marco del Proyecto Final de la carrera de Ingeniería Electrónica de la UTN FRBA durante el año 2022.
 El mismo fue llevado a cabo por: 
 
-_Salvador Apablaza; Carolina Sol Fernández; Nicolás Gabriel Locatti_.
+_Salvador Apablaza, Carolina Sol Fernández y Nicolás Gabriel Locatti_.
 
 # Resumen
 En el presente trabajo se desarrolla un framework de detección de personas para analizar el comportamiento de los clientes en una tienda minorista mediante el procesamiento de videos de vigilancia. Para ello, se propone un pipeline compuesto por un preprocesamiento del video, un procesamiento con un modelo basado en redes neuronales, y un postprocesamiento orientado a correcciones. Se proveen indicadores útiles para los negocios, entre ellos, un mapa de calor que muestra los espacios ocupados. El resultado es constatado con un etiquetado manual para evaluar el rendimiento del algoritmo. Se demuestra la viabilidad de este método para comprender el comportamiento de los clientes. 
